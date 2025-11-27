@@ -1,0 +1,165 @@
+﻿<!--
+File: Views/Home/Index.cshtml
+This is the single-page content file. Keep sections short and modular.
+-->
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- 1. HERO SECTION -->
+<section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <!-- Background Blob Effects -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+    <div class="absolute top-0 right-1/4 w-[600px] h-[600px] bg-violet-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-indigo-100 bg-indigo-50/50 backdrop-blur-sm text-indigo-600 text-xs font-bold uppercase tracking-widest shadow-sm">
+            Available for Hire
+        </div>
+        <h1 class="text-6xl md:text-8xl font-black text-slate-900 tracking-tight mb-6 leading-tight">
+            Building digital <br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">experiences.</span>
+        </h1>
+        <p class="text-xl text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed">
+            I'm a full-stack developer specializing in building exceptional digital experiences. Currently, I'm focused on accessible, human-centered products at <span class="text-indigo-600 font-semibold">Melih.Dev</span>.
+        </p>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+            <a href="#projects" class="px-8 py-4 rounded-full bg-slate-900 text-white font-bold hover:bg-indigo-600 hover:-translate-y-1 transition-all shadow-xl shadow-slate-200 text-decoration-none">
+                View My Work
+            </a>
+            <a href="#contact" class="px-8 py-4 rounded-full bg-white text-slate-700 border border-slate-200 font-bold hover:border-indigo-200 hover:text-indigo-600 transition-all text-decoration-none">
+                Contact Me
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- 2. ABOUT SECTION -->
+<section id="about" class="py-32 bg-white relative">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <!-- Text -->
+        <div>
+            <h2 class="text-4xl font-bold text-slate-900 mb-6">About Me</h2>
+            <div class="w-20 h-1.5 bg-indigo-600 mb-8 rounded-full"></div>
+            <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                Hello! My name is Melih and I enjoy creating things that live on the internet. My interest in web development started back in 2020 when I decided to try editing custom Tumblr themes — turns out hacking together HTML & CSS is pretty fun!
+            </p>
+            <p class="text-lg text-slate-600 leading-relaxed">
+                Fast-forward to today, and I’ve had the privilege of working at an advertising agency, a start-up, and a huge corporation. My main focus these days is building accessible, inclusive products and digital experiences for a variety of clients.
+            </p>
+        </div>
+        <!-- Image / Graphic -->
+        <div class="relative group">
+            <div class="absolute inset-0 bg-indigo-600 rounded-3xl transform translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-all"></div>
+            <div class="relative bg-slate-200 rounded-3xl overflow-hidden aspect-square grayscale hover:grayscale-0 transition-all duration-500">
+                <img src="https://placehold.co/600x600?text=Profile+Photo" alt="Melih" class="w-full h-full object-cover" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. PROJECTS SLIDESHOW (The Cool Part) -->
+<section id="projects" class="py-32 bg-slate-50 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h2 class="text-4xl font-bold text-slate-900 mb-4">Featured Projects</h2>
+                <div class="w-20 h-1.5 bg-indigo-600 rounded-full"></div>
+            </div>
+            <!-- Slide Controls -->
+            <div class="flex gap-2">
+                <button onclick="scrollProjects('left')" class="p-4 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-900 hover:text-white transition-all shadow-sm">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button onclick="scrollProjects('right')" class="p-4 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-900 hover:text-white transition-all shadow-sm">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- The Slider Container (Snap Scroll) -->
+        <!-- 'snap-x' enables the physics. 'no-scrollbar' hides the bar. -->
+        <div id="project-slider" class="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-12 no-scrollbar scroll-smooth">
+
+            <!-- Project Card 1 -->
+            <div class="min-w-[85vw] md:min-w-[600px] snap-center">
+                <div class="group relative h-[400px] rounded-3xl overflow-hidden shadow-2xl transition-all hover:-translate-y-2">
+                    <img src="https://placehold.co/800x600/1e293b/ffffff?text=Project+One" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 p-8 md:p-12 w-full">
+                        <span class="text-indigo-400 font-bold tracking-wider text-xs uppercase mb-2 block">Web Development</span>
+                        <h3 class="text-3xl font-bold text-white mb-4">E-Commerce Dashboard</h3>
+                        <p class="text-slate-300 line-clamp-2 mb-6">A complete overhaul of a retail dashboard using ASP.NET Core and React. Improved load times by 40%.</p>
+                        <a href="#" class="inline-flex items-center text-white font-bold hover:text-indigo-400 transition-colors text-decoration-none">
+                            View Case Study
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="min-w-[85vw] md:min-w-[600px] snap-center">
+                <div class="group relative h-[400px] rounded-3xl overflow-hidden shadow-2xl transition-all hover:-translate-y-2">
+                    <img src="https://placehold.co/800x600/312e81/ffffff?text=Project+Two" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 p-8 md:p-12 w-full">
+                        <span class="text-indigo-400 font-bold tracking-wider text-xs uppercase mb-2 block">Mobile App</span>
+                        <h3 class="text-3xl font-bold text-white mb-4">Fitness Tracker AI</h3>
+                        <p class="text-slate-300 line-clamp-2 mb-6">An iOS application that uses computer vision to track workout form in real-time.</p>
+                        <a href="#" class="inline-flex items-center text-white font-bold hover:text-indigo-400 transition-colors text-decoration-none">
+                            View Case Study
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="min-w-[85vw] md:min-w-[600px] snap-center">
+                <div class="group relative h-[400px] rounded-3xl overflow-hidden shadow-2xl transition-all hover:-translate-y-2">
+                    <img src="https://placehold.co/800x600/4c1d95/ffffff?text=Project+Three" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 p-8 md:p-12 w-full">
+                        <span class="text-indigo-400 font-bold tracking-wider text-xs uppercase mb-2 block">Data Science</span>
+                        <h3 class="text-3xl font-bold text-white mb-4">Market Predictor</h3>
+                        <p class="text-slate-300 line-clamp-2 mb-6">Python-based prediction model for local real estate markets using 10 years of historical data.</p>
+                        <a href="#" class="inline-flex items-center text-white font-bold hover:text-indigo-400 transition-colors text-decoration-none">
+                            View Case Study
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 4. CONTACT SECTION -->
+<section id="contact" class="py-32 bg-white text-center">
+    <div class="max-w-2xl mx-auto px-6">
+        <h2 class="text-4xl font-bold text-slate-900 mb-6">Get In Touch</h2>
+        <div class="w-20 h-1.5 bg-indigo-600 rounded-full mx-auto mb-8"></div>
+        <p class="text-xl text-slate-600 mb-12">
+            Although I'm not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+        </p>
+        <a href="mailto:hello@melih.dev" class="inline-block px-10 py-5 rounded-2xl bg-slate-900 text-white font-bold text-lg hover:bg-indigo-600 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-500/30 transition-all duration-300 text-decoration-none">
+            Say Hello
+        </a>
+    </div>
+</section>
+
+<!-- Simple JS for the Slider Buttons -->
+<script>
+    function scrollProjects(direction) {
+        const slider = document.getElementById('project-slider');
+        const scrollAmount = 600; // Approx card width
+        if (direction === 'left') {
+            slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        } else {
+            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    }
+</script>

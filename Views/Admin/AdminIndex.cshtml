@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Admin Dashboard";
+    ViewData["IsAdminPage"] = true;
+}
+<div class="min-h-[70vh] w-full flex flex-col items-center justify-center py-12 px-4">
+    
+    <div class="text-center mb-16 space-y-2">
+        <h1 class="text-5xl font-extrabold text-slate-900 tracking-tight">Project Dashboard</h1>
+        <p class="text-slate-500 text-lg">Select an action to manage your portfolio</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
+
+        <a href="/Admin/Create" class="group flex flex-col items-center justify-center p-10 bg-white border border-slate-200 rounded-3xl shadow-sm hover:shadow-2xl hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 ease-out cursor-pointer text-decoration-none">
+            <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+            </div>
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">Create New</h3>
+                <p class="text-slate-500 text-sm mt-2 px-4">Start a new project entry from scratch</p>
+            </div>
+        </a>
+
+        <a href="/Admin/Edit" class="group flex flex-col items-center justify-center p-10 bg-white border border-slate-200 rounded-3xl shadow-sm hover:shadow-2xl hover:border-amber-300 hover:-translate-y-1 transition-all duration-300 ease-out cursor-pointer text-decoration-none">
+            <div class="w-20 h-20 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center mb-6 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+            </div>
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-slate-800 group-hover:text-amber-600 transition-colors">Edit Existing</h3>
+                <p class="text-slate-500 text-sm mt-2 px-4">Update details, photos, or status</p>
+            </div>
+        </a>
+
+        <a href="/Admin/Delete" class="group flex flex-col items-center justify-center p-10 bg-white border border-slate-200 rounded-3xl shadow-sm hover:shadow-2xl hover:border-red-300 hover:-translate-y-1 transition-all duration-300 ease-out cursor-pointer text-decoration-none">
+            <div class="w-20 h-20 bg-red-50 text-red-600 rounded-full flex items-center justify-center mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            </div>
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-slate-800 group-hover:text-red-600 transition-colors">Delete</h3>
+                <p class="text-slate-500 text-sm mt-2 px-4">Remove records permanently</p>
+            </div>
+        </a>
+
+    </div>
+</div>
+
