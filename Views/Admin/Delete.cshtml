@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Portfolio.Models.Project>
+@{
+    
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Admin Dashboard";
     ViewData["IsAdminPage"] = true;
@@ -40,13 +42,18 @@
                 </p>
 
                 <form method="post" class="space-y-4">
+                    @Html.AntiForgeryToken()
                     <div class="relative group">
                         <label class="block text-sm font-bold text-slate-700 mb-2 ml-1">Choose Project</label>
-                        <select class="w-full appearance-none px-4 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none font-medium text-slate-700 transition-all cursor-pointer">
+                        <select name= "id" class="w-full appearance-none px-4 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none font-medium text-slate-700 transition-all cursor-pointer">
                             <option disabled selected>-- Select a project to delete --</option>
-                            <option>Portfolio Website</option>
-                            <option>E-Commerce App</option>
-                            <option>Old Python Scripts</option>
+                            @if (Model != null)
+                            {
+                                @foreach (var project in Model)
+                                {
+                                    <option value="@project.Id">@project.Title</option>
+                                }
+                            }   
                         </select>
                         <div class="absolute top-[42px] right-4 pointer-events-none text-slate-400">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>

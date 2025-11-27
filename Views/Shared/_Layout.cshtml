@@ -67,6 +67,33 @@
 
     <!-- Main Content -->
     <main role="main" class="relative">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="max-w-4xl mx-auto mt-6 mb-6">
+                <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-md shadow-sm flex items-center justify-between">
+                    <div class="flex items-center">
+                        <!-- Success Icon -->
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <!-- The Message -->
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-green-800">
+                                @TempData["SuccessMessage"]
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Close Button (Optional Logic) -->
+                    <button onclick="this.parentElement.parentElement.style.display='none'" class="text-green-500 hover:text-green-700 transition-colors">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        }
         @RenderBody()
     </main>
 
