@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Melih Portfolio</title>
+
+    <!-- Tailwind CSS (Assuming v4 or CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter for that clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- SMART NAVBAR -->
+    <nav id="main-nav" class="fixed top-0 left-0 w-full z-50 transition-transform duration-300 ease-in-out border-b border-white/10 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo -->
+                @if (ViewData["IsAdminPage"] != null || ViewData["IsAdminPage"] == null)
+                {
+                    <a href="/Home/Index" class="text-2xl font-black tracking-tighter text-slate-900 flex items-center gap-2 hover:opacity-80 transition-opacity text-decoration-none z-20">
+                        <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-lg">M</div>
+                        Melih<span class="text-indigo-600">.Dev</span>
+                    </a>
+                }
+                <!-- Desktop Links -->
+                <div class="hidden md:flex items-center space-x-8 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    @if (ViewData["IsAdminPage"] == null)
+                    {
+                    <a href="#about" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors text-decoration-none">About</a>
+                    <a href="#projects" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors text-decoration-none">Projects</a>
+                    <a href="#contact" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors text-decoration-none">Contact</a>
+                    <a href="/resume.pdf" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors text-decoration-none">Resume</a>
+                    }
+                </div>
+
+                <!-- Admin Button -->
+                <div class="flex items-center gap-4 z-20">
+                    @if (ViewData["IsAdminPage"] != null || ViewData["IsAdminPage"] == null)
+                    {
+                    <a href="/Admin/AdminIndex" class="px-5 py-2.5 rounded-full bg-slate-900 text-white text-xs font-bold tracking-wide hover:bg-indigo-600 hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 text-decoration-none">
+                        ADMIN PANEL
+                    </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main role="main" class="relative">
+        @RenderBody()
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p>&copy; 2025 Melih Portfolio. Built with ASP.NET Core & Tailwind.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- NAVBAR SCROLL LOGIC (Copy-Paste Magic) -->
+    <script>
+        let lastScrollY = window.scrollY;
+        const nav = document.getElementById('main-nav');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                // Scrolling DOWN -> Hide Nav
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling UP -> Show Nav
+                nav.style.transform = 'translateY(0)';
+            }
+            lastScrollY = window.scrollY;
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

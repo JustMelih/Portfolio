@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Admin Dashboard";
+    ViewData["IsAdminPage"] = true;
+}
+<div class="min-h-[80vh] flex items-center justify-center p-6 pt-28 bg-gradient-to-br from-slate-50 to-blue-50/50">
+    
+    <!-- 1. THE WRAPPER (This is the anchor for the floating button) -->
+    <div class="relative w-full max-w-2xl">
+
+        <!-- 2. THE FLOATING BACK BUTTON (Desktop) -->
+        <!-- 'absolute -left-20' pushes it 5rem (80px) to the left of the card -->
+        <!-- 'hidden lg:flex' means it hides on tablets/phones and only shows on big screens -->
+        <a href="/Admin/AdminIndex" class="absolute -left-24 top-6 hidden lg:flex flex-col items-center gap-2 text-slate-400 hover:text-slate-600 transition-all group text-decoration-none z-10" title="Back to Dashboard">
+            <div class="p-4 bg-white rounded-full shadow-sm border border-slate-200 group-hover:border-blue-300 group-hover:shadow-md group-hover:-translate-x-1 transition-all">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            </div>
+            <span class="text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap delay-75">Go Back</span>
+        </a>
+        
+        <!-- 3. MOBILE BACK BUTTON (Visible only on small screens) -->
+        <a href="/Admin/AdminIndex" class="lg:hidden flex items-center gap-2 text-slate-500 mb-4 font-bold text-sm hover:text-slate-800 transition-colors text-decoration-none">
+             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+             Back to Dashboard
+        </a>
+
+        <!-- 4. MAIN CARD (Your Form) -->
+        <div class="bg-white border border-slate-200 rounded-3xl shadow-xl overflow-hidden">
+            
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-blue-500 px-8 py-6 text-white flex items-center justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold tracking-tight">Create New Project</h2>
+                    <p class="text-blue-100 text-sm mt-1">Showcase your latest work</p>
+                </div>
+                <div class="bg-white/20 p-3 rounded-xl backdrop-blur-sm">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                </div>
+            </div>
+
+            <!-- Form Body -->
+            <div class="p-8">
+                <form method="post" enctype="multipart/form-data" class="space-y-6">
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Project Name</label>
+                        <input type="text" name="ProjectName" placeholder="e.g. AI Portfolio Website" required
+                               class="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all font-medium text-slate-800 placeholder:text-slate-400">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Description</label>
+                        <textarea name="Description" rows="5" placeholder="Tell the story of this project..." required
+                                  class="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all font-medium text-slate-800 resize-none placeholder:text-slate-400"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Project URL <span class="text-slate-400 font-normal ml-1">(Optional)</span></label>
+                            <input type="url" name="ProjectUrl" placeholder="https://myproject.com" 
+                                   class="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all font-medium text-slate-600 placeholder:text-slate-400">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">GitHub URL</label>
+                            <input type="url" name="GitHubUrl" placeholder="https://github.com/username/repo" required
+                                   class="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all font-medium text-slate-600 placeholder:text-slate-400">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Project Media <span class="text-slate-400 font-normal ml-1">(Images & one video)</span></label>
+                        <label class="flex flex-col items-center justify-center w-full h-40 border-2 border-slate-300 border-dashed rounded-xl cursor-pointer hover:bg-blue-50/50 hover:border-blue-400 transition-all group bg-slate-50/30">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <svg class="w-10 h-10 mb-3 text-slate-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <p class="text-sm text-slate-500 group-hover:text-blue-600 font-medium">Drop your images and video here</p>
+                                <p class="text-xs text-slate-400 mt-1">Supports multiple images & single video file</p>
+                            </div>
+                            <input type="file" name="ProjectMedia" class="hidden" multiple accept="image/*,video/*" />
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-end gap-4 pt-6 border-t border-slate-100 mt-8">
+                        <a href="/Admin/AdminIndex" class="px-6 py-2.5 rounded-xl font-bold text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors text-decoration-none">Cancel</a>
+                        <button type="submit" class="px-8 py-2.5 rounded-xl font-bold text-white bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 shadow-lg shadow-blue-200/50 hover:shadow-blue-300/50 transform hover:-translate-y-0.5 transition-all">
+                            Publish Project
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

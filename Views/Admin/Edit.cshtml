@@ -1,0 +1,123 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Admin Dashboard";
+    ViewData["IsAdminPage"] = true;
+}
+<div class="min-h-[80vh] flex items-center justify-center p-6 pt-28 bg-gradient-to-br from-slate-50 to-amber-50/50">
+
+    <!-- 1. THE WRAPPER (Anchor for floating button) -->
+    <div class="relative w-full max-w-5xl">
+
+        <!-- 2. FLOATING BACK BUTTON (Desktop) -->
+        <a href="/Admin/AdminIndex" class="absolute -left-24 top-6 hidden lg:flex flex-col items-center gap-2 text-slate-400 hover:text-slate-600 transition-all group text-decoration-none z-10" title="Back to Dashboard">
+            <div class="p-4 bg-white rounded-full shadow-sm border border-slate-200 group-hover:border-amber-300 group-hover:shadow-md group-hover:-translate-x-1 transition-all">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            </div>
+            <span class="text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap delay-75">Go Back</span>
+        </a>
+
+        <!-- 3. MOBILE BACK BUTTON -->
+        <a href="/Admin/AdminIndex" class="lg:hidden flex items-center gap-2 text-slate-500 mb-4 font-bold text-sm hover:text-slate-800 transition-colors text-decoration-none">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to Dashboard
+        </a>
+
+        <!-- 4. MAIN CARD -->
+        <div class="w-full bg-white border border-slate-200 rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row min-h-[650px]">
+
+            <!-- LEFT SIDE: Project Selector -->
+            <div class="w-full md:w-1/3 bg-slate-50/50 border-r border-slate-200 p-6">
+                <h3 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
+                    <span class="w-2 h-8 bg-amber-500 rounded-full shadow-lg shadow-amber-200"></span>
+                    Select Project
+                </h3>
+
+                <!-- List of Projects (Mock Data) -->
+                <div class="space-y-3">
+                    <div class="p-4 bg-white border-l-4 border-amber-500 rounded-r-xl shadow-md cursor-pointer transform translate-x-1 transition-all">
+                        <h4 class="font-bold text-slate-800">Portfolio Website</h4>
+                        <p class="text-xs text-slate-500 mt-1 truncate">Updated: Just now</p>
+                    </div>
+                    <div class="p-4 border border-slate-200 rounded-xl hover:bg-white hover:shadow-md cursor-pointer transition-all opacity-70 hover:opacity-100 hover:border-amber-200">
+                        <h4 class="font-bold text-slate-700">E-Commerce App</h4>
+                        <p class="text-xs text-slate-500 mt-1">Updated: Yesterday</p>
+                    </div>
+                    <div class="p-4 border border-slate-200 rounded-xl hover:bg-white hover:shadow-md cursor-pointer transition-all opacity-70 hover:opacity-100 hover:border-amber-200">
+                        <h4 class="font-bold text-slate-700">Python Scraper</h4>
+                        <p class="text-xs text-slate-500 mt-1">Updated: 5 days ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE: Edit Form -->
+            <div class="w-full md:w-2/3 p-8 relative overflow-y-auto">
+                <div class="flex justify-between items-start mb-8 pb-6 border-b border-slate-100">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Editing: Portfolio Website</h2>
+                        <p class="text-slate-500 text-sm mt-1">Make your updates below</p>
+                    </div>
+                    <div class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold border border-amber-200">
+                        Live Mode
+                    </div>
+                </div>
+
+                <form method="post" enctype="multipart/form-data" class="space-y-6 pb-20">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Project Name</label>
+                        <input type="text" value="Portfolio Website" required
+                               class="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all font-medium text-slate-800">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Description</label>
+                        <textarea rows="5" required
+                                  class="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all font-medium text-slate-800 resize-none">A personal portfolio website built with ASP.NET Core and Tailwind CSS...</textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Project URL <span class="text-slate-400 font-normal ml-1">(Optional)</span></label>
+                            <input type="url" value="https://melih.dev"
+                                   class="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all font-medium text-slate-600">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">GitHub URL</label>
+                            <input type="url" value="https://github.com/melih/portfolio" required
+                                   class="w-full px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all font-medium text-slate-600">
+                        </div>
+                    </div>
+
+                    <!-- Media Management -->
+                    <div class="bg-slate-50/50 rounded-xl p-5 border border-slate-200">
+                        <label class="block text-sm font-bold text-slate-700 mb-3">Current Media</label>
+                        <div class="flex gap-3 overflow-x-auto pb-2 mb-4 scrollbar-hide">
+                            <div class="relative flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden group shadow-sm">
+                                <img src="https://placehold.co/100x100" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/50 hidden group-hover:flex items-center justify-center cursor-pointer transition-all">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                </div>
+                            </div>
+                            <div class="relative flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden group shadow-sm">
+                                <img src="https://placehold.co/100x100?text=Vid" class="w-full h-full object-cover opacity-80">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="bg-white/30 rounded-full p-1"><svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></div>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Upload New Media</label>
+                        <input type="file" multiple accept="image/*,video/*"
+                               class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-amber-100 file:text-amber-700 hover:file:bg-amber-200 transition-colors" />
+                    </div>
+
+                    <div class="absolute bottom-8 right-8 flex gap-3 z-10">
+                        <a href="/Admin/AdminIndex" class="px-5 py-2.5 rounded-xl font-bold text-slate-500 hover:bg-slate-100 transition-colors text-decoration-none">Discard Changes</a>
+                        <button type="submit" class="px-6 py-2.5 rounded-xl font-bold text-white bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-lg shadow-amber-200/50 transform hover:-translate-y-0.5 transition-all">
+                            Save Updates
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
