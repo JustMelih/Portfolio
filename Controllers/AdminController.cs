@@ -4,9 +4,6 @@ using Portfolio.Models;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-
-
-
 namespace Portfolio.Controllers
 {
     public class AdminController : Controller
@@ -70,9 +67,11 @@ namespace Portfolio.Controllers
             return RedirectToAction(nameof(AdminIndex));
         }
 
+        [HttpGet]
         public IActionResult Edit()
         {
-            return View();
+            var projectList = _db.Projects.ToList();
+            return View(projectList);
         }
         [HttpGet]
         public async Task<IActionResult> Delete()
