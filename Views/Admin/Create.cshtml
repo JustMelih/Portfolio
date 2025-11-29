@@ -81,7 +81,7 @@
                                 <p class="text-sm text-slate-500 group-hover:text-blue-600 font-medium">Click to add files</p>
                             </div>
                             <!-- Note: We removed 'onchange' from here, we handle it in JS -->
-                            <input type="file" id="mediaInput" class="hidden" multiple accept="image/*,video/*" />
+                            <input name="projectMedia" type="file" id="mediaInput" class="hidden" multiple accept="image/*,video/*" />
                         </label>
 
                         <!-- 2. The Gallery (Where thumbnails appear) -->
@@ -189,7 +189,7 @@
 
         updateInputAndGallery();
         // Reset the input so you can select the same file again if you deleted it
-        input.value = '';
+        //input.value = '';
     });
 
     // 3. Sync Logic: Updates the UI and the Hidden Input

@@ -33,6 +33,25 @@ namespace Portfolio.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Project nProject, List<IFormFile> projectMedia)
         {
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine($"DEBUG: Method Started.");
+            Console.WriteLine($"DEBUG: Title received: '{nProject.Title}'");
+
+            if (projectMedia == null)
+            {
+                Console.WriteLine("DEBUG: projectMedia is NULL! (The envelope is missing)");
+            }
+            else
+            {
+                Console.WriteLine($"DEBUG: projectMedia List Exists. Count: {projectMedia.Count}");
+                for (int i = 0; i < projectMedia.Count; i++)
+                {
+                    var f = projectMedia[i];
+                    Console.WriteLine($"DEBUG: File [{i}]: Name='{f.FileName}', Size={f.Length} bytes, Type='{f.ContentType}'");
+                }
+            }
+            Console.WriteLine("--------------------------------------------------");
+
             ModelState.Remove("ImageUrl");
             ModelState.Remove("VideoUrl");
 
@@ -41,6 +60,9 @@ namespace Portfolio.Controllers
 
             if (ModelState.IsValid == false)
                 ModelState.AddModelError(string.Empty, "Invalid data.");
+
+            List<string> imagePaths = new List<string>();
+            string videoPath = null;
 
             foreach (var file in projectMedia)
             {
@@ -54,12 +76,19 @@ namespace Portfolio.Controllers
                        await file.CopyToAsync(fileStream);
                     string dbPath = "/uploads/" + uniqueFileName;
 
+                    string relativePath = Path.Combine("/uploads", uniqueFileName).Replace("\\", "/");
+
                     if (file.ContentType.Contains("image"))
-                        nProject.ImageUrl = dbPath;
+                        imagePaths.Add(relativePath);
                     else if (file.ContentType.Contains("video"))
-                        nProject.VideoUrl = dbPath;
+                        videoPath = relativePath; 
                 }
             }
+
+            if (imagePaths.Count > 0)
+                nProject.ImageUrl = string.Join(";", imagePaths);
+            if (videoPath != null)
+                nProject.VideoUrl = videoPath;
 
             _db.Projects.Add(nProject);
             await _db.SaveChangesAsync();
